@@ -19,7 +19,7 @@ module.exports = function (dateString) {
         return n > 9 ? '' + n : '0' + n;
     }
 
-    function formattedDate(currentDate) {
+    function formatDate(currentDate) {
         let result = '';
         result = result + currentDate.getFullYear();
         result = result + '-' + leftPad(currentDate.getMonth() + 1);
@@ -31,10 +31,10 @@ module.exports = function (dateString) {
     }
 
     let currentDate = new Date(year, month - 1, day, hour, minute, second);
-    let value = formattedDate(currentDate);
+    let value = formatDate(currentDate);
 
 
-    function dateIncrease(inputDate, timeUnit, amount) {
+    function changeDate(inputDate, timeUnit, amount) {
         switch (timeUnit) {
             case 'years':
                 inputDate.setYear(currentDate.getFullYear() + amount);
@@ -65,8 +65,8 @@ module.exports = function (dateString) {
             if (amount < 0) {
                 throw new TypeError('amount cannot be less than 0');
             }
-            currentDate = dateIncrease(currentDate, timeUnit, amount);
-            this.value = formattedDate(currentDate);
+            currentDate = changeDate(currentDate, timeUnit, amount);
+            this.value = formatDate(currentDate);
             return this;
         },
 
@@ -74,8 +74,8 @@ module.exports = function (dateString) {
             if (amount < 0) {
                 throw new TypeError('amount cannot be less than 0');
             }
-            currentDate = dateIncrease(currentDate, timeUnit, amount * -1);
-            this.value = formattedDate(currentDate);
+            currentDate = changeDate(currentDate, timeUnit, amount * -1);
+            this.value = formatDate(currentDate);
             return this;
         },
     }
