@@ -39,4 +39,18 @@ assert.throws(
     'Если попытаться передать в функцию add отрицательное число – выбросится исключение TypeError'
 );
 
+var time = date('2015-01-01 00:00')
+    .add(5, 'minutes')
+    .add(1, 'hours')
+    .add(2, 'days')
+    .add(3, 'months')
+    .add(1, 'years')
+assert.deepEqual(
+    time.value,
+    '2016-04-03 01:05',
+    'Если к дате "2015-01-01 00:00" ' +
+    'прибавить ' +
+    'то получится "2016-04-03 01:05"'
+);
+
 console.info('OK!');
