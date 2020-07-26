@@ -66,4 +66,83 @@ assert.deepEqual(result, [
     { name: 'Стелла', gender: 'Женский', email: 'waltersguzman@example.com' }
 ]);
 
+// Выполняем выборку и фильтрацию с помощью нашего конструктора
+var result = lib.query(
+    friends,
+    lib.select('name', 'gender', 'email'),
+    lib.filterIn('favoriteFruit', ['Яблоко', 'Картофель']),
+    lib.filterIn('favoriteFruit', ['Яблоко', 'Банан']),
+);
+
+// Сравниваем полученный результат с ожидаемым
+assert.deepEqual(result, [
+    { name: 'Эмили', gender: 'Женский', email: 'example@example.com' },
+    { name: 'Мэт', gender: 'Мужской', email: 'danamcgee@example.com' },
+]);
+
+// Выполняем выборку и фильтрацию с помощью нашего конструктора
+var result = lib.query(
+    friends,
+    lib.select('name', 'gender', 'email'),
+    lib.filterIn('favoriteFruit', ['Яблоко', 'Картофель']),
+    lib.filterIn('favoriteFruit', ['Яблоко', 'Банан']),
+    lib.select('name'),
+);
+
+// Сравниваем полученный результат с ожидаемым
+assert.deepEqual(result, [
+    { name: 'Эмили'},
+    { name: 'Мэт'}
+]);
+
+// Выполняем выборку и фильтрацию с помощью нашего конструктора
+var result = lib.query(
+    friends
+);
+
+
+// Выполняем выборку и фильтрацию с помощью нашего конструктора
+var result = lib.query(
+    friends,
+    lib.select('name', 'gender', 'email'),
+    lib.filterIn('favoriteFruit', ['Яблоко', 'Картофель']),
+    lib.filterIn('favoriteFruit', ['Банан'])
+);
+
+// Сравниваем полученный результат с ожидаемым
+assert.deepEqual(result, []);
+
+// Выполняем выборку и фильтрацию с помощью нашего конструктора
+var result = lib.query(
+    friends,
+    lib.select('name', 'gender', 'email'),
+    lib.filterIn('favoriteFruit', ['Яблоко', 'Картофель']),
+    lib.filterIn('favoriteFruit', ['Яблоко', 'Банан']),
+    lib.filterIn('favoriteFruit', ['Фейхоа'])
+);
+
+// Сравниваем полученный результат с ожидаемым
+assert.deepEqual(result, []);
+
+// Выполняем выборку и фильтрацию с помощью нашего конструктора
+var result = lib.query(
+    friends,
+    lib.filterIn('name', ['Сэм', 'Брэд', 'Стелла']),
+    lib.filterIn('favoriteFruit', ['Яблоко', 'Картофель']),
+    lib.filterIn('favoriteFruit', ['Картофель']),
+    lib.filterIn('email', ['waltersguzman@example.com'])
+);
+
+// Сравниваем полученный результат с ожидаемым
+assert.deepEqual(result, [
+    {
+        name: 'Стелла',
+        gender: 'Женский',
+        email: 'waltersguzman@example.com',
+        favoriteFruit: 'Картофель'
+    }
+]);
+
 console.info('OK!');
+
+
