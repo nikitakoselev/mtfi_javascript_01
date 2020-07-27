@@ -1,3 +1,3 @@
-let a = 1 + 5 + 'mama' + 6;
-
-console.log(typeof a);
+console.info('1'.padStart(2,'0'));
+console.info('11'.padStart(2,'0'));
+console.info('111'.padStart(2,'0'));
